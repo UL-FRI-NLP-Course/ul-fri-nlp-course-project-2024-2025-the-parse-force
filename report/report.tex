@@ -41,10 +41,10 @@
 \PaperTitle{Project 7: Analysis and comparison of translation errors and biases in LLMs} 
 
 % Authors (student competitors) and their info
-\Authors{Lea, Ines and Isabell}
+\Authors{Lea Vodopivec, Ines Kara\v{z}ija and Isabell Furkert}
 
 % Advisors
-\affiliation{\textit{Advisors: Slavko Žitnik}}
+\affiliation{\textit{Advisors: Ale\v{s} \v{Z}agar}}
 
 % Keywords
 \Keywords{Keyword1, Keyword2, Keyword3 ...}
@@ -77,155 +77,48 @@
 	%----------------------------------------------------------------------------------------
 	
 	\section*{Introduction}
-	These latex files are intended to serve as a the template for the NLP course at FRI.  The template is adapted from the FRI Data Science Project Competition. template  If you find mistakes in the template or have problems using it, please consult Jure Demšar (\href{mailto:jure.demsar@fri.uni-lj.si}{jure.demsar@fri.uni-lj.si}).
+	The differentiation between formal and informal language registers play an important role in communication. However, machine translation systems still struggle to distinguish between them accurately [1]. This project examines how different Large Language Models (LLMs) handle register-sensitive translation, analysing their ability to adapt to formal and informal contexts, while identifying common errors and biases. Since control over formality is essential for producing natural and culturally appropriate translations, failures in this area can lead to awkward or even disrespectful output. Therefore, improving the ability of machine translation to manage formality remains a key challenge in natural language processing.
+	European languages, such as English, Slovene and German, often express formality through complex syntax (e.g. subordinates clauses) or sophisticated vocabulary and phrasing.
 	
-	In the Introduction section you should write about the relevance of your work (what is the purpose of the project, what will we solve) and about related work (what solutions for the problem already exist). Where appropriate, reference scientific work conducted by other researchers. For example, the work done by Demšar et al. \cite{Demsar2016BalancedMixture} is very important for our project. The abbreviation et al. is for et alia, which in latin means and others, we use this abbreviation when there are more than two authors of the work we are citing. If there are two authors (or if there is a single author) we just write down their surnames. For example, the work done by Demšar and Lebar Bajec \cite{Demsar2017LinguisticEvolution} is also important for successful completion of our project.
+	\section*{Related Work}
+	A study conducted by Wang et al. [1] in 2023 explored the effectiveness of different prompting techniques to guide pre-trained LLMs such as GPT-3 and ChatGPT by producing translations with controlled levels of formality. They introduce a robust Transformer-based classifier that outperforms previous evaluation metrics for formality-controlled translation. Nădejde et al. [2] also addressed the challenge of controlling formality in translations done by LLMs in their research. Their study highlights the issue of honorifics, using the example of translating “Are you sure?” into both formal and informal German. They introduce the CoCoA-MT dataset and an evaluation metric for training LLMs, demonstrating that fine-tuning on labeled contrastive data allows models to achieve high accuracy while maintaining translation quality. 
+	In the work of Li \& Hu [3], the two researchers explore the “shining-through” effect in English translations from Chinese across four different registers, comparing human and machine translations. Their results show that the effect is present in both but more pronounced and persisted in machine-generated texts. The effect varies depending on the register, being most present in general and academic texts. 
+	Mekki et. al [4] also contributed to the field of register-aware NLP by introducing the TREMoLo-Tweets corus, a large-scale French dataset of over 200 000 tweets annotated with labels based on their register. The project itself both demonstrates a way to automatically identify and analyze register in informal genres, such as social media, and provides a replicable framework for training register classifiers, which is relevant to evaluating register preservation in translated outputs as well. Moreover, the authors explore how linguistic descriptors (i.e. contractions, emoji use, verbal tense diversity) could be adapted to evaluate whether LLMs shift or preserve register when translating text between languages, and as such highlight the importance of capturing linguistic cues when evaluating whether an LLM translation maintains the tone, intention, and formality of the original.
+	Similarly, Vela and Lapshinova-Koltunski [5] propose a register-based evaluation framework that incorporates lexico-grammatical features into the evaluation of machine translation output. By training classifiers on various linguistic characteristics, associated with different registers, they show that machine translations tend to share more register features with human translations than with original source text. This suggests that register awareness is often already implicitly handled during translation, but still not always consistently preserved across genres. Above all, their work emphasizes the need to evaluate machine-generated outputs in terms of how well they reflect the context and stylistic expectations of the source, not only based on content accuracy and similarity to the golden standard. Their findings also underscore the importance of assessing whether LLM-generated translations preserve or distort register, particularly when translating between formal and informal contexts.
+	
 	
 	
 	%------------------------------------------------
 	
-	\section*{Methods}
-	
-	Use the Methods section to describe what you did an how you did it -- in what way did you prepare the data, what algorithms did you use, how did you test various solutions ... Provide all the required details for a reproduction of your work.
-	
-	Below are \LaTeX examples of some common elements that you will probably need when writing your report (e.g. figures, equations, lists, code examples ...).
-	
-	
-	\subsection*{Equations}
-	
-	You can write equations inline, e.g. $\cos\pi=-1$, $E = m \cdot c^2$ and $\alpha$, or you can include them as separate objects. The Bayes’s rule is stated mathematically as:
-	
-	\begin{equation}
-		P(A|B) = \frac{P(B|A)P(A)}{P(B)},
-		\label{eq:bayes}
-	\end{equation}
-	
-	where $A$ and $B$ are some events. You can also reference it -- the equation \ref{eq:bayes} describes the Bayes's rule.
-	
-	\subsection*{Lists}
-	
-	We can insert numbered and bullet lists:
-	
-	% the [noitemsep] option makes the list more compact
-	\begin{enumerate}[noitemsep] 
-		\item First item in the list.
-		\item Second item in the list.
-		\item Third item in the list.
-	\end{enumerate}
-	
-	\begin{itemize}[noitemsep] 
-		\item First item in the list.
-		\item Second item in the list.
-		\item Third item in the list.
-	\end{itemize}
-	
-	We can use the description environment to define or describe key terms and phrases.
-	
-	\begin{description}
-		\item[Word] What is a word?.
-		\item[Concept] What is a concept?
-		\item[Idea] What is an idea?
-	\end{description}
+	\section*{Initial idea}
+	The goal of our project is to analyse, assess and compare how large language models handle register variation when producing translations. We’re specifically interested into the distinction between formal and informal language and identifying whether and how these models preserve or shift the intended register of the source text across languages, genres and prompts. Through analysis, we would like to discover if certain models show a tendency toward a neutral, overly formal, or casual style.
+	Our research will involve evaluating translation outputs from different LLMs across a range of text types, including both formal text (i.e. government proceedings) and informal (i.e. social media posts) language. We aim to assess the extent to which register is maintained or altered and under which circumstances, and to explore whether these shifts reveal any underlying biases or limitations in model behaviour. Ultimately, we seek to offer insight into strengths and weaknesses of current LLMs in handling stylistic variation in register.
+	To evaluate register accuracy and variation, we will employ a combination of methods, including automatic formality classifiers, BLEU scores for general translation quality, and human evaluations by native speakers who can assess the appropriateness and fluency of translated output in terms of register.
 	
 	
-	\subsection*{Random text}
+	\subsection*{Dataset \& Methods}
 	
-	This text is inserted only to make this template look more like a proper report. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit dictum facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam convallis tellus velit, quis ornare ipsum aliquam id. Maecenas tempus mauris sit amet libero elementum eleifend. Nulla nunc orci, consectetur non consequat ac, consequat non nisl. Aenean vitae dui nec ex fringilla malesuada. Proin elit libero, faucibus eget neque quis, condimentum laoreet urna. Etiam at nunc quis felis pulvinar dignissim. Phasellus turpis turpis, vestibulum eget imperdiet in, molestie eget neque. Curabitur quis ante sed nunc varius dictum non quis nisl. Donec nec lobortis velit. Ut cursus, libero efficitur dictum imperdiet, odio mi fermentum dui, id vulputate metus velit sit amet risus. Nulla vel volutpat elit. Mauris ex erat, pulvinar ac accumsan sit amet, ultrices sit amet turpis.
-	
-	Phasellus in ligula nunc. Vivamus sem lorem, malesuada sed pretium quis, varius convallis lectus. Quisque in risus nec lectus lobortis gravida non a sem. Quisque et vestibulum sem, vel mollis dolor. Nullam ante ex, scelerisque ac efficitur vel, rhoncus quis lectus. Pellentesque scelerisque efficitur purus in faucibus. Maecenas vestibulum vulputate nisl sed vestibulum. Nullam varius turpis in hendrerit posuere.
+For our research, we will use the Grammarly's Yahoo Answers Formality Corpus [6], which contains parallel English sentences in formal and informal registers that we will translate to German and Slovene. 
 	
 	
-	\subsection*{Figures}
-	
-	You can insert figures that span over the whole page, or over just a single column. The first one, \figurename~\ref{fig:column}, is an example of a figure that spans only across one of the two columns in the report.
-	
-	\begin{figure}[ht]\centering
-		\includegraphics[width=\linewidth]{single_column.pdf}
-		\caption{\textbf{A random visualization.} This is an example of a figure that spans only across one of the two columns.}
-		\label{fig:column}
-	\end{figure}
-	
-	On the other hand, \figurename~\ref{fig:whole} is an example of a figure that spans across the whole page (across both columns) of the report.
-	
-	% \begin{figure*} makes the figure take up the entire width of the page
-		\begin{figure*}[ht]\centering 
-			\includegraphics[width=\linewidth]{whole_page.pdf}
-			\caption{\textbf{Visualization of a Bayesian hierarchical model.} This is an example of a figure that spans the whole width of the report.}
-			\label{fig:whole}
-		\end{figure*}
-		
-		
-		\subsection*{Tables}
-		
-		Use the table environment to insert tables.
-		
-		\begin{table}[hbt]
-			\caption{Table of grades.}
-			\centering
-			\begin{tabular}{l l | r}
-				\toprule
-				\multicolumn{2}{c}{Name} \\
-				\cmidrule(r){1-2}
-				First name & Last Name & Grade \\
-				\midrule
-				John & Doe & $7.5$ \\
-				Jane & Doe & $10$ \\
-				Mike & Smith & $8$ \\
-				\bottomrule
-			\end{tabular}
-			\label{tab:label}
-		\end{table}
-		
-		
-		\subsection*{Code examples}
-		
-		You can also insert short code examples. You can specify them manually, or insert a whole file with code. Please avoid inserting long code snippets, advisors will have access to your repositories and can take a look at your code there. If necessary, you can use this technique to insert code (or pseudo code) of short algorithms that are crucial for the understanding of the manuscript.
-		
-		\lstset{language=Python}
-		\lstset{caption={Insert code directly from a file.}}
-		\lstset{label={lst:code_file}}
-		\lstinputlisting[language=Python]{code/example.py}
-		
-		\lstset{language=R}
-		\lstset{caption={Write the code you want to insert.}}
-		\lstset{label={lst:code_direct}}
-		\begin{lstlisting}
-			import(dplyr)
-			import(ggplot)
-			
-			ggplot(diamonds,
-			aes(x=carat, y=price, color=cut)) +
-			geom_point() +
-			geom_smooth()
-		\end{lstlisting}
-		
-		%------------------------------------------------
 		
 		\section*{Results}
 		
 		Use the results section to present the final results of your work. Present the results in a objective and scientific fashion. Use visualisations to convey your results in a clear and efficient manner. When comparing results between various techniques use appropriate statistical methodology.
+
 		
-		\subsection*{More random text}
 		
-		This text is inserted only to make this template look more like a proper report. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit dictum facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam convallis tellus velit, quis ornare ipsum aliquam id. Maecenas tempus mauris sit amet libero elementum eleifend. Nulla nunc orci, consectetur non consequat ac, consequat non nisl. Aenean vitae dui nec ex fringilla malesuada. Proin elit libero, faucibus eget neque quis, condimentum laoreet urna. Etiam at nunc quis felis pulvinar dignissim. Phasellus turpis turpis, vestibulum eget imperdiet in, molestie eget neque. Curabitur quis ante sed nunc varius dictum non quis nisl. Donec nec lobortis velit. Ut cursus, libero efficitur dictum imperdiet, odio mi fermentum dui, id vulputate metus velit sit amet risus. Nulla vel volutpat elit. Mauris ex erat, pulvinar ac accumsan sit amet, ultrices sit amet turpis.
-		
-		Phasellus in ligula nunc. Vivamus sem lorem, malesuada sed pretium quis, varius convallis lectus. Quisque in risus nec lectus lobortis gravida non a sem. Quisque et vestibulum sem, vel mollis dolor. Nullam ante ex, scelerisque ac efficitur vel, rhoncus quis lectus. Pellentesque scelerisque efficitur purus in faucibus. Maecenas vestibulum vulputate nisl sed vestibulum. Nullam varius turpis in hendrerit posuere.
-		
-		Nulla rhoncus tortor eget ipsum commodo lacinia sit amet eu urna. Cras maximus leo mauris, ac congue eros sollicitudin ac. Integer vel erat varius, scelerisque orci eu, tristique purus. Proin id leo quis ante pharetra suscipit et non magna. Morbi in volutpat erat. Vivamus sit amet libero eu lacus pulvinar pharetra sed at felis. Vivamus non nibh a orci viverra rhoncus sit amet ullamcorper sem. Ut nec tempor dui. Aliquam convallis vitae nisi ac volutpat. Nam accumsan, erat eget faucibus commodo, ligula dui cursus nisi, at laoreet odio augue id eros. Curabitur quis tellus eget nunc ornare auctor.
 		
 		
 		%------------------------------------------------
 		
 		\section*{Discussion}
 		
-		Use the Discussion section to objectively evaluate your work, do not just put praise on everything you did, be critical and exposes flaws and weaknesses of your solution. You can also explain what you would do differently if you would be able to start again and what upgrades could be done on the project in the future.
-		
 		
 		%------------------------------------------------
+
 		
-		\section*{Acknowledgments}
 		
-		Here you can thank other persons (advisors, colleagues ...) that contributed to the successful completion of your project.
 		
 		
 		%----------------------------------------------------------------------------------------
@@ -233,6 +126,15 @@
 		%----------------------------------------------------------------------------------------
 		\bibliographystyle{unsrt}
 		\bibliography{report}
+		\renewcommand{\labelenumi}{[\theenumi]}
+		\begin{enumerate}
+			\item  P. C. Wang, E. Marrese-Taylor, Y. Matsuo, “Prompting pre-trained Large Language Models for formality-controlled En-Ja Translation”, in 人工知能学会全国大会論文集, vol. JSAI2023, pp. 2E5GS602-2E5GS602, 2023.
+			\item M. Nadejde, A. Currey, B. Hsu, X. Niu, M. Federico and G. Dinu, "Cocoa-mt: A dataset and benchmark for contrastive controlled mt with application to formality," 2022.
+			\item Y. Li, “A better or worse communicator? Comparing human and machine translation in source language shining through across registers”, in Lingua, vol. 312, p. 103834, 2024.
+			\item J. Mekki, G. Lecorvé, D. Battistelli, N. Béchet, “TREMoLo-tweets: A multi-label corpus of French tweets for language register characterization”, in RANLP 2021-Recent Advances in Natural Language Processing, Sept. 2021.
+			\item M. Vela, E. Lapshinova-Koltunski, “Register-based machine translation evaluation with text classification techniques”, in Proceedings of Machine Translation Summit XV: Papers, 2015.
+			\item  S. Rao, J. Tetreault, “Dear sir or madam, may I introduce the GYAFC dataset: Corpus, benchmarks and metrics for formality style transfer”, in NAACL, 2018.
+		\end{enumerate}
 		
 		
 	\end{document}
