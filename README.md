@@ -7,12 +7,12 @@ This project investigates how large language models (LLMs) handle formality and 
 
 ## Table of content
 
--[Dataset](#-dataset)
--[Translation Models](#-translation-models)
--[Prompting Strategies](#-prompting-strategies)
--[Evaluation Methods](#-evaluation-methods)
--[Results Summary](#-results-summary)
--[Credits](#-credits)
+- [Dataset](#-dataset)
+- [Translation Models](#-translation-models)
+- [Prompting Strategies](#-prompting-strategies)
+- [Evaluation Methods](#-evaluation-methods)
+- [Results Summary](#-results-summary)
+- [Credits](#-credits)
 
 ---
 ## Dataset
