@@ -20,6 +20,7 @@
 %----------------------------------------------------------------------------------------
 \documentclass[fleqn,moreauthors,10pt]{ds_report}
 \usepackage[english]{babel}
+\usepackage{xeCJK}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -185,8 +186,9 @@ Finally, our research focused on general-purpose LLMs while there is also a lot 
 		\bibliographystyle{unsrt}
 		\bibliography{report}
 		\renewcommand{\labelenumi}{[\theenumi]}
+		\begin{CJK*}
 		\begin{enumerate}
-			\item  P. C. Wang, E. Marrese-Taylor, Y. Matsuo, “Prompting pre-trained Large Language Models for formality-controlled En-Ja Translation”, in 人工知能学会全国大会論文集, vol. JSAI2023, pp. 2E5GS602-2E5GS602, 2023.
+			\item  P. C. Wang, E. Marrese-Taylor, Y. Matsuo, “Prompting pre-trained Large Language Models for formality-controlled En-Ja Translation”, in 人工知能学会全国大会論文集 , vol. JSAI2023, pp. 2E5GS602-2E5GS602, 2023.
 			\item M. N\u{a}dejde, A. Currey, B. Hsu, X. Niu, M. Federico and G. Dinu, "Cocoa-mt: A dataset and benchmark for contrastive controlled mt with application to formality," 2022.
 			\item Y. Li, “A better or worse communicator? Comparing human and machine translation in source language shining through across registers”, in Lingua, vol. 312, p. 103834, 2024.
 			\item J. Mekki, G. Lecorvé, D. Battistelli, N. Béchet, “TREMoLo-tweets: A multi-label corpus of French tweets for language register characterization”, in RANLP 2021-Recent Advances in Natural Language Processing, Sept. 2021.
@@ -196,6 +198,6 @@ Finally, our research focused on general-purpose LLMs while there is also a lot 
 			\item Google, Gemma: Open models from Google DeepMind, https://ai.google.dev/gemma, 2024.
 			\item S. Rao and J. Tetreault, "Dear sir or madam, may I introduce the GYAFC dataset: Corpus, benchmarks and metrics for formality style transfer," arXiv preprint, arXiv:1803.06535,2018.
 		\end{enumerate}
-		
+	\end{CJK*}
 		
 	\end{document}
