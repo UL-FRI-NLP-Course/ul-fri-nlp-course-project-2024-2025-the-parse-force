@@ -49,7 +49,7 @@ We tested each model using all four prompt strategies
 ---
 
 ## Results summary
-- **GPT-4o** performed best overall, especially with Explicit B prompts
+- **GPT-4o** performed best overall, especially with Explicit B prompts  
       — Formality: Avg. 0.89 (Slovene)  
       — Meaning: 0.97 (German)  
 - **DeepSeek & Gemma**: Stronger in fluency; Gemma weaker in formality  
