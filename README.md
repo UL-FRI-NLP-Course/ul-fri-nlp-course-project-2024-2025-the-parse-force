@@ -45,14 +45,41 @@ We tested each model using all four prompt strategies
 
 ## Evaluation methods
 - **BLEU scores** using [`sacrebleu`](https://github.com/mjpost/sacrebleu) for lexical overlap
-
+- **Human evaluation** for formality preservation, fluency and meaning preservation
 ---
 
 ## Results summary
-- GPT-4o performed best overall, especially with Explicit B prompts
-- Register preservation was inconsistent across models
-- Slovene outputs were more sensitive to prompt quality than German
+- **GPT-4o** performed best overall, especially with Explicit B prompts
+      - Formality: Avg. 0.89 (Slovene)
+      - Meaning: 0.97 (German)
+  **DeepSeek & Gemma**: Stronger in fluency; Gemma weaker in formality
+- **Language-Specific Effects**:
+      - Slovene: Higher formality scores
+      - German: Higher fluency
+- **Trade-offs**: No model excels across all categories
+      - Register preservation was inconsistent across models
+- LLMs still struggle with register in morphologically rich languages
 
+
+  
+
+---
+
+## Custom Translation Pipeline (T5-small)
+
+### Implementation
+- **Tools**: Hugging Face Transformers, Google Colab (GPU)  
+- **Model**: `t5-small` (text-to-text)
+
+### Observed Limitations
+- No formality control — outputs default to neutral tone  
+- Weak prompt sensitivity — little change with rewording  
+- Lower quality on nuanced translation vs. instruction-tuned LLMs  
+
+### Conclusion
+- For tasks requiring **stylistic nuance** (e.g., register control), use  
+  - Fine-tuned models  
+  - Instruction-tuned LLMs (e.g., GPT-4o, DeepSeek)
 ---
 
 ## Credits
