@@ -1,0 +1,2 @@
+This project investigates how large language models (LLMs) handle formality and register preservation in multilingual tasks. 
+We analyzed translations from English into German and English into Slovene using different prompt strategies and evaluated the output with BLEU scores.
